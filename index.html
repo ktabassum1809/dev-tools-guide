@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTools Guide - Web Development Resources</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>DevTools Guide</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="#free-tool">Free Tool</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Smart Tools for Smart Developers</h1>
+            <p>Honest reviews of the web development tools I use daily. No hype, just real experience.</p>
+            <a href="blog.html" class="btn">Read Latest Articles</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>Hey, I'm Tabassum Khan 👋</h2>
+            <p>I'm a frontend developer who's tried dozens of tools, hosting services, and frameworks. Here I share what actually works.</p>
+            <div class="badges">
+                <span class="badge"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="badge"><i class="fab fa-react"></i> React</span>
+                <span class="badge"><i class="fab fa-css3-alt"></i> CSS</span>
+                <span class="badge"><i class="fas fa-bolt"></i> Performance</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Tool Section -->
+    <section id="free-tool" class="tool-section">
+        <div class="container">
+            <h2><i class="fas fa-tools"></i> Free Website Speed Test</h2>
+            <p>Check your website's performance score instantly:</p>
+            
+            <div class="tool-container">
+                <div class="input-group">
+                    <input type="url" id="website-url" placeholder="https://yourwebsite.com" required>
+                    <button id="analyze-btn" class="btn">
+                        <i class="fas fa-search"></i> Analyze
+                    </button>
+                </div>
+                
+                <div id="results" class="results" style="display: none;">
+                    <div class="metric">
+                        <h3>Performance Score</h3>
+                        <div class="score-circle">
+                            <span id="performance-score">0</span>
+                        </div>
+                    </div>
+                    <div class="suggestions">
+                        <h4>Suggestions:</h4>
+                        <ul id="suggestions-list">
+                            <!-- Suggestions will appear here -->
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="newsletter">
+        <div class="container">
+            <h2>Get Weekly Developer Tips</h2>
+            <p>Join 500+ developers getting practical tips every Tuesday.</p>
+            <form id="newsletter-form">
+                <input type="email" placeholder="your.email@example.com" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+            <p class="privacy">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 DevTools Guide. All rights reserved.</p>
+            <p class="disclosure">Some links may be affiliate links. This helps support the site at no extra cost to you.</p>
+            <div class="social">
+                <a href="https://github.com/ktabassum1809"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/tabassum-khan1809"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
