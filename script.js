@@ -1,4 +1,4 @@
-// WEBSITE SPEED TEST TOOL - COMPLETE ANIMATED VERSION
+// WEBSITE SPEED TEST TOOL - COMPLETE ANIMATED VERSION (DIGITALOCEAN EDITION)
 document.addEventListener('DOMContentLoaded', function() {
     const analyzeBtn = document.getElementById('analyze-btn');
     const websiteUrl = document.getElementById('website-url');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // KNOWN FAST SITES (should score HIGH)
         const fastDomains = [
             'google.com', 'youtube.com', 'facebook.com', 'instagram.com',
-            'twitter.com', 'github.com', 'vercel.app', 'netlify.app',
+            'twitter.com', 'github.com', 'digitalocean.com', 'aws.amazon.com',
             'cloudflare.com', 'amazon.com', 'microsoft.com', 'apple.com',
             'stackoverflow.com', 'reddit.com', 'netflix.com', 'twitch.tv'
         ];
@@ -138,20 +138,20 @@ const getRealisticSuggestions = (url, score) => {
             tools: 'Cloudflare Radar, Web Analytics',
             affiliateAlternative: 'Cloudflare (partnership program)'
         },
-        'vercel.app': {
-            name: 'Vercel',
-            infrastructure: 'AWS + Vercel Edge Network',
-            cdn: 'Vercel Edge Network',
-            special: 'Serverless Functions, Edge Middleware',
-            tools: 'Vercel Analytics, Speed Insights',
-            affiliateAlternative: null // This is Vercel itself!
+        'digitalocean.com': {
+            name: 'DigitalOcean',
+            infrastructure: 'DigitalOcean global data centers',
+            cdn: 'DigitalOcean + Cloudflare partnership',
+            special: 'Droplets, Kubernetes, Managed Databases',
+            tools: 'DigitalOcean Monitoring, DO Functions',
+            affiliateAlternative: null
         },
-        'netlify.app': {
-            name: 'Netlify',
-            infrastructure: 'AWS + Netlify Edge',
-            cdn: 'Netlify Edge',
-            special: 'Netlify Functions, Forms, Identity',
-            tools: 'Netlify Analytics',
+        'aws.amazon.com': {
+            name: 'AWS',
+            infrastructure: 'Amazon Web Services',
+            cdn: 'Amazon CloudFront',
+            special: '200+ services, Global Accelerator',
+            tools: 'AWS Trusted Advisor, Cost Explorer',
             affiliateAlternative: null
         }
     };
@@ -180,8 +180,8 @@ const getRealisticSuggestions = (url, score) => {
             }
             
             // Smart affiliate linking
-            if (info.affiliateAlternative && !hostname.includes('vercel')) {
-                // Don't recommend Vercel to Vercel/Netlify/Cloudflare sites
+            if (info.affiliateAlternative && !hostname.includes('digitalocean')) {
+                // Don't recommend DigitalOcean to DigitalOcean/AWS sites
                 if (info.affiliateAlternative === 'AWS' || info.affiliateAlternative === 'Azure') {
                     suggestions.push(`• Enterprise alternative: ${info.affiliateAlternative}`);
                 } else if (info.affiliateAlternative === 'Firebase Hosting') {
@@ -189,9 +189,10 @@ const getRealisticSuggestions = (url, score) => {
                 } else if (info.affiliateAlternative.includes('affiliate')) {
                     suggestions.push(`• Consider: ${info.affiliateAlternative}`);
                 }
-            } else if (score < 80 && !hostname.includes('vercel') && !hostname.includes('netlify') && !hostname.includes('cloudflare')) {
-                // Only recommend Vercel if score is low AND not a hosting competitor
-                suggestions.push(`• For similar performance: <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel Hosting</a> (affiliate)`);
+            } else if (score < 80 && !hostname.includes('digitalocean') && !hostname.includes('aws.amazon') && !hostname.includes('cloudflare')) {
+                // Only recommend DigitalOcean if score is low AND not a hosting competitor
+                suggestions.push(`• For better performance: <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean Cloud</a>`);
+                suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
             }
             
             return suggestions;
@@ -240,15 +241,17 @@ const getRealisticSuggestions = (url, score) => {
         suggestions.push("⚠️ <strong>Improve:</strong> Focus on Core Web Vitals");
     }
     
-    // Different Vercel messaging based on platform
+    // Different DigitalOcean messaging based on platform
     if (score < 85) {
         if (hostname.includes('.onrender.com') || hostname.includes('.herokuapp.com')) {
-            suggestions.push(`<br>🚀 <strong>Performance Boost:</strong> Moving from ${hostname.includes('.onrender.com') ? 'Render' : 'Heroku'} to <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel</a> could improve your score by ${100 - score}+ points`);
-            suggestions.push("Vercel is specifically optimized for frontend");
-            suggestions.push(" Global CDN included (vs single region)");
-            suggestions.push(" Instant deployments with preview URLs");
+            suggestions.push(`<br>🚀 <strong>Performance Boost:</strong> Moving from ${hostname.includes('.onrender.com') ? 'Render' : 'Heroku'} to <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean</a> could improve your score by ${Math.min(20, 100 - score)}+ points`);
+            suggestions.push("DigitalOcean offers dedicated resources (vs shared)");
+            suggestions.push(" Predictable pricing with no cold starts");
+            suggestions.push(" Full server control for optimization");
+            suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
         } else {
-            suggestions.push(`<br>🚀 <strong>Boost score:</strong> Consider <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel Hosting</a> (affiliate) for +${Math.min(30, 100 - score)}+ points`);
+            suggestions.push(`<br>🚀 <strong>Boost score:</strong> Consider <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean Cloud</a> for +${Math.min(15, 100 - score)}+ points`);
+            suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
         }
     }
 }
@@ -261,17 +264,19 @@ const getRealisticSuggestions = (url, score) => {
         suggestions.push("• Enable compression");
         suggestions.push("• Optimize images");
         suggestions.push("• Minify CSS/JS");
-        suggestions.push(`• Switch to faster hosting like <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel</a> (affiliate)`);
+        suggestions.push(`• Switch to faster hosting like <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean</a>`);
+        suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
     }
     else {
         suggestions.push("<div class='result-header poor'>🚨 <strong>POOR PERFORMANCE</strong></div>");
         suggestions.push("❌ <strong>Critical:</strong> High bounce rate likely");
         
-        // Strongest affiliate push
+        // Strongest recommendation
         suggestions.push("<br>💥 <strong>Immediate action:</strong>");
-        suggestions.push(`• <strong>Switch to <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel Hosting</a> (affiliate)</strong>`);
-        suggestions.push("• Use CDN for assets");
-        suggestions.push("• Remove unused resources");
+        suggestions.push(`• <strong>Upgrade to <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean Droplets</a></strong>`);
+        suggestions.push("• Add Cloudflare CDN (free)");
+        suggestions.push("• Optimize images with Kraken.io");
+        suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
     }
     
     // Platform-specific tips (WITHOUT affiliate push if it's a hosting platform)
@@ -279,20 +284,23 @@ const getRealisticSuggestions = (url, score) => {
         suggestions.push("<br>🔧 <strong>WordPress Tips:</strong>");
         suggestions.push("• WP Rocket caching plugin");
         suggestions.push("• Smush image optimization");
-        suggestions.push(`• Consider managed hosting like <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel</a> for WordPress (affiliate)`);
+        suggestions.push(`• Use <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean</a> with Cloudways for managed WordPress`);
+        suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
     }
     
     if (hostname.includes('github.io')) {
         suggestions.push("<br>🔧 <strong>GitHub Pages:</strong>");
         suggestions.push("• Already on free hosting");
         suggestions.push("• Add Cloudflare for CDN");
-        suggestions.push(`• Upgrade to <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel</a> for better performance (affiliate)`);
+        suggestions.push(`• Upgrade to <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean App Platform</a> for better performance`);
+        suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
     }
     
     // Final tip based on score
     if (score < 80) {
         suggestions.push("<br>📈 <strong>Expected Improvement:</strong>");
-        suggestions.push(`Moving to optimized hosting like <a href="https://vercel.com" target="_blank" class="affiliate-link">Vercel</a> could improve your score by ${100 - score} points.`);
+        suggestions.push(`Upgrading to cloud hosting like <a href="https://www.digitalocean.com" target="_blank" class="affiliate-link">DigitalOcean</a> could improve your score by ${Math.min(40, 100 - score)} points.`);
+        suggestions.push('<p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;"><i class="fas fa-info-circle"></i> Affiliate program pending - using direct link for now</p>');
     }
     
     return suggestions;
